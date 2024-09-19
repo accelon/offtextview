@@ -11,7 +11,7 @@ export let active=false;
 const shownparallels=writable([])
 const ctx=getContext("ctx");
 $: [page,book,line]=parsePageBookLine(addr);
-$: alignables=ctx?.ptk.alignable(book)||[];
+$: alignables=ctx?.ptk?.alignable(book)||[];
 const fetchPage=(page,book)=>{
     let [lines]=getSliceText(book,page,ctx?.ptk);
     return lines;

@@ -38,14 +38,7 @@ const taptext=(e)=>{
     }
 }
 </script>
-<span class="bodytext" use:setstyle>
-{#each snippets as [text,type] }
-{#if type=='hzpx'}
-<span style="font-size:0px">
-<Hzpxglyph {color} {size} ire={text}/>
-</span>
-{:else}
-<span on:click={taptext} aria-hidden={true} oritext={text}>{@html _(text,ctx?.sim)}</span>
-{/if}
-{/each}
-</span>
+<span class="bodytext" use:setstyle>{#each snippets as [text,type] }{#if type=='hzpx'}
+<span style="font-size:0px"><Hzpxglyph {color} {size} ire={text}
+/></span>{:else}<span on:click={taptext} aria-hidden={true} oritext={text}
+>{@html _(text,ctx?.sim)}</span>{/if}{/each}</span>

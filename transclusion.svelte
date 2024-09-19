@@ -2,7 +2,6 @@
 //import { usedBy,parseEntry,getFirstEntry } from './format';
 //import {refreshcount,editingfile,theptk} from './store.js'
 import { URL_REGEX } from 'ptk/utils/constants.ts';
-import { removeBracket } from 'ptk/utils/cjk.ts';
 import { parsePageBookLine} from 'ptk/offtext/parser.ts';
 import { captionOfPage, pageBookLineOfAnchor,getSliceText} from './comps/ptk.js';
 import {parseEntry} from './transclusion.js';
@@ -22,12 +21,10 @@ let opened=false;
 let showback=false;
 let caption='',transclusiontext='',entry='';
 let istranscludepage=false,page='',line=0,book='';
-
 const getTransclusion=()=>{
-    const ptk=ctx.ptk;
+    const ptk=ctx.transclusiondict||ctx.ptk;
     let link='';
     [caption,link]= parseEntry(text);
-    
     const [pg,bk]=parsePageBookLine(link);
     if (pg.startsWith('x')) {
         const pbl=pageBookLineOfAnchor(text,ptk);
@@ -37,17 +34,8 @@ const getTransclusion=()=>{
         book=b;
         istranscludepage=true;
     } else {
-        transclusiontext=getSliceText("lyxq",pg,ptk)[0];
-        console.log(caption,transclusiontext)
+        transclusiontext=getSliceText(bk||ctx.book,pg,ptk)[0];
         istranscludepage=true;
-        // const res=getFirstEntry(link, ptk,bk||$editingfile);
-        // if (res&&typeof res[0]!=='string') {
-        //     [page,line]=res[0];//see matchEntry 
-        //     caption=caption||removeBracket(res[0][2]);
-        //     istranscludepage=true;
-        // } else {
-        //     transclusiontext=res[0]; //hyper links?
-        // }
     }
 }
 

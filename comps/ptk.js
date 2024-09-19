@@ -126,9 +126,15 @@ export const pageBookLineOfAnchor=(anchor,ptk)=>{
     const lineoff=s-ptk.defines.dk.linepos[numberpage]+loff;
     return numberpage+'@'+book+ (lineoff?'.'+lineoff:'');
 }
+export const getColumnText=(ptk,bk,key)=>{
+    const col=ptk.columns[bk];
+    const at=col.keys.indexOf(key);
+    const dk=col.dkat[at];
+    const [s,e]=ptk.rangeOfAddress('bk#'+bk+'.dk#'+dk);
+    return [at,ptk.slice(s,e).join('\n')];
+}
 export const getSliceText=(bk,pg,ptk,getPagetText)=>{
-    
-    if (parseInt(pg).toString()==pg) {
+        if (parseInt(pg).toString()==pg) {
         return ptk?pageFromPtk(ptk,bk,pg):getPageText(pg,bk);
     } else if (ptk) {
         if (pg.startsWith('x')||pg.startsWith('y')) {
@@ -146,12 +152,14 @@ export const getSliceText=(bk,pg,ptk,getPagetText)=>{
             }
             return [lines.join('\n'),lineinfo,numberpage, lineoff];
         } else {//fi
+            if (!bk) bk=Object.keys(ptk.columns)[0];
             if (ptk.columns[bk]) {
-                const keys=ptk.columns[bk]?.keys;
-                const at=keys.indexOf(pg)
-                const dk=ptk.columns[bk].dkat[at];
-                const [s,e]=ptk.rangeOfAddress('bk#'+bk+'.dk#'+dk);
-                return [ptk.slice(s,e).join('\n'), {},at,0];
+                let [at,content]=getColumnText(ptk,bk,pg);
+                const m=content.match(/@(.+)$/);
+                if (m && ~ptk.columns[bk].keys.indexOf(m[1])) {
+                    [at,content]=getColumnText(ptk,bk,m[1]);
+                }
+                return [content, {},at,0];
             }
         }
     }
