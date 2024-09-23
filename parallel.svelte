@@ -1,7 +1,7 @@
 <script>
 import {getContext} from 'svelte'
 //import {shownparallels} from './store.js'
-import {getSliceText} from './comps/ptk.js'
+import {getSliceText} from 'ptk/basket/entries.ts'
 import {painters} from './painters.js'
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
 import { writable } from 'svelte/store';

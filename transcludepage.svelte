@@ -1,6 +1,6 @@
 <script>
 import {getContext} from 'svelte'
-import { getSliceText } from './comps/ptk.js';
+import { getSliceText } from 'ptk/basket/entries.ts';
 import {painters} from './painters'
 import {moreicon} from './comps/svgicon.js'
 export let book='';

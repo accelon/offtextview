@@ -1,10 +1,8 @@
 <script>
-//import { usedBy,parseEntry,getFirstEntry } from './format';
-//import {refreshcount,editingfile,theptk} from './store.js'
 import { URL_REGEX } from 'ptk/utils/constants.ts';
 import { parsePageBookLine} from 'ptk/offtext/parser.ts';
-import { captionOfPage, pageBookLineOfAnchor,getSliceText} from './comps/ptk.js';
-import {parseEntry} from './transclusion.js';
+import { captionOfPage, pageBookLineOfAnchor,getSliceText} from 'ptk/basket/entries.ts';
+import {parseTransclusion} from 'ptk/offtext/parser.ts';
 import {getContext} from 'svelte';
 import {painters} from './painters.js'
 import Backlinks from './backlinks.svelte'
@@ -19,12 +17,12 @@ export let active=false;
 const ctx=getContext('ctx');
 let opened=false;
 let showback=false;
-let caption='',transclusiontext='',entry='';
+let caption='',transclusiontext='',link='';
 let istranscludepage=false,page='',line=0,book='';
 const getTransclusion=()=>{
     const ptk=ctx.transclusiondict||ctx.ptk;
-    let link='';
-    [caption,link]= parseEntry(text);
+    let tag='';
+    [tag,link,caption]=parseTransclusion(text);
     const [pg,bk]=parsePageBookLine(link);
     if (pg.startsWith('x')) {
         const pbl=pageBookLineOfAnchor(text,ptk);
@@ -58,10 +56,10 @@ const showBacklink=()=>{
     showback=!showback;
 }
 </script>
-<span aria-hidden="true" on:click={openclose} class="clickable" title={entry}
+<span aria-hidden="true" on:click={openclose} class="clickable" title={link}
 class:transclusion_link={istranscludepage||!!transclusiontext}
-class:transclusion_broken={!istranscludepage&& !transclusiontext &&!entry.match(URL_REGEX)}
-class:transclusion_url={entry.match(URL_REGEX)}
+class:transclusion_broken={!istranscludepage&& !transclusiontext &&!link.match(URL_REGEX)}
+class:transclusion_url={link.match(URL_REGEX)}
 class:transclusion_opened={opened}><Textout text={caption}/></span>{#if opened}<span style=
 {"border-bottom:1px solid var(--depthcolor"+(depth+1)+
 "); border-left:3px dashed var(--depthcolor"+(depth+1)+

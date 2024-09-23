@@ -1,7 +1,7 @@
 <script>
 import {getContext} from 'svelte'
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
-import {pageBookLineOfAnchor} from '../comps/ptk.js'
+import {pageBookLineOfAnchor} from 'ptk/basket/entries.ts'
 import {painters} from '../painters.js'
 import Textout from '../comps/textout.svelte';
 import { removeBracket } from 'ptk/utils/cjk.ts';

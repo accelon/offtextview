@@ -1,8 +1,8 @@
 <script>
 import {getContext} from 'svelte'
 import Textout from './comps/textout.svelte';
-import {captionOfPage} from './comps/ptk.js'
-import { downstreamicon } from './comps/svgicon';
+import {captionOfPage} from 'ptk/basket/entries.ts'
+import { downstreamicon } from './comps/svgicon.js';
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
 const ctx=getContext('ctx');
 export let absline=0;

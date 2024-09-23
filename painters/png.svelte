@@ -1,7 +1,7 @@
 <script>
 import {getContext} from 'svelte'
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
-import {getSliceText} from '../comps/ptk.js'
+import {getSliceText} from 'ptk/basket/entries.ts'
 const ctx=getContext('ctx');
 export let tagname='';
 export let text='';

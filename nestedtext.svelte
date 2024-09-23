@@ -1,7 +1,7 @@
 <script>
 import {getContext} from 'svelte';
 import NestedLine from './nestedline.svelte'
-import {captionOf} from './comps/ptk.js'
+import {captionOf} from 'ptk/basket/entries.ts'
 export let addr='';
 export let text=''
 export let active=true;
