@@ -8,10 +8,11 @@ export let addr='';
 export let offtag='';
 export let active=false;
 export let text='';
-$:  [tagname,attrs]=parseOfftag(offtag);
+export let dimtext=false;
+$:  [tagname,attrs]=parseOfftag(offtag+text);
 </script>
 {#if painters[tagname]}
-<svelte:component this={painters[tagname]} {tagname} {attrs} {text} {addr} {active}/>
+<svelte:component this={painters[tagname]} {tagname} {attrs} {text} {addr} {active} {...attrs}/>
 {:else}
-<span class={"offtag_"+tagname} {...attrs}><Textout text={removeBracket(text)}/></span>
+<span class={"offtag_"+tagname} {...attrs}><Textout {dimtext} text={removeBracket(text)}/></span>
 {/if}

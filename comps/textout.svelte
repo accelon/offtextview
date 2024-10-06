@@ -5,6 +5,8 @@ export let text=''
 import {_} from './textout.js'
 import {sentencePosfromSelection,REGEX_IRE} from 'ptk/utils/cjk.ts'
 export let tappable=false;
+export let dimtext=false;
+
 let color,size;
 const ctx=getContext('ctx');
 const breakSnippets=t=>{
@@ -38,7 +40,7 @@ const taptext=(e)=>{
     }
 }
 </script>
-<span class="bodytext" use:setstyle>{#each snippets as [text,type] }{#if type=='hzpx'}
+<span class="bodytext" class:dimtext use:setstyle>{#each snippets as [text,type] }{#if type=='hzpx'}
 <span style="font-size:0px"><Hzpxglyph {color} {size} ire={text}
 /></span>{:else}<span on:click={taptext} aria-hidden={true} oritext={text}
 >{@html _(text,ctx?.sim)}</span>{/if}{/each}</span>

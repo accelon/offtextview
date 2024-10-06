@@ -10,7 +10,7 @@ export let line=0;//從yid算起的偏移量
 export let active=false;
 export let depth=0;
 export let nolinebreak=false;
-
+export let parent=''
 const ctx=getContext('ctx');
 let linestext=[];
 let pagetext='',text='',lineinfo=[],lineoff=0;
@@ -49,7 +49,7 @@ on:click={moreup} aria-hidden="true">{from}</span><span class="btnmore" on:click
 {/if}
 {/if}
 <svelte:component this={painters.NestedText} {nolinebreak} {text}
- {active} depth={depth+1} addr={page+'@'+book} />
+ {active} depth={depth+1} addr={page+'@'+book} {parent}/>
 {#if active&&to<linestext.length}
 <span 
 class="btnmore" on:click={()=>moredown(false)} 

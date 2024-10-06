@@ -1,18 +1,19 @@
 <script>
+import {getContext} from 'svelte'
 export let links=[];
 export let depth=0;
-
+const ctx=getContext('ctx');
 import {painters} from './painters.js'
-//import {changePage } from './format';
 import { downstreamicon } from './comps/svgicon.js';
-export const gotopage=p=>{
-  //  changePage(p)
+
+const gotopage=()=>{
+  //ctx.
 }
 </script>
-{#each links as link}
-{#if parseInt(link).toString()==link}
-<span aria-hidden="true" class="clickable" on:click={()=>gotopage(link)}>{@html downstreamicon}{link}</span>
+{#each links as text}
+{#if parseInt(text).toString()==text}
+<span aria-hidden="true" class="clickable" on:click={()=>gotopage(text)}>{@html downstreamicon}{text}</span>
 {:else}
-<svelte:component this={painters.Transclusion} text={link} depth={depth+1}/>
+<svelte:component this={painters.Transclusion} {text} depth={depth+1}/>
 {/if}{" "}
 {/each}

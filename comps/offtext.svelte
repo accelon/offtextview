@@ -7,6 +7,7 @@ export let text='';
 export let addr='';
 $: brackets=eatbracket(text,'\t').split('\t');
 $: addr;
+
 </script>
 {#each brackets as item}
 <span class={"offtext"+item.charAt(0)
