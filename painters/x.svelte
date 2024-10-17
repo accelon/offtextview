@@ -14,10 +14,12 @@ export let depth=0;
 export let addr='';
 export let attrs={};
 export let active=false;
+export let id='',ln='';
 const ctx=getContext("ctx")
 let page, book, line;
 $: yid=tagname.replace(/^x/,'y')+attrs.id;
-let highlight,pbl;
+let highlight,pbl
+$: id,ln;
 const findPageLine=()=>{
     const [ppage,pbook,lineoff]=parsePageBookLine(addr);
     book=attrs.ln;

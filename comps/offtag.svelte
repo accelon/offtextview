@@ -9,10 +9,12 @@ export let offtag='';
 export let active=false;
 export let text='';
 export let dimtext=false;
-$:  [tagname,attrs]=parseOfftag(offtag+text);
+export let alt='';
+$: [tagname,attrs]=parseOfftag(offtag,text);
+$: alt
 </script>
 {#if painters[tagname]}
-<svelte:component this={painters[tagname]} {tagname} {attrs} {text} {addr} {active} {...attrs}/>
+<svelte:component this={painters[tagname]} {tagname} {attrs} {text} {addr} {active} {...attrs} />
 {:else}
 <span class={"offtag_"+tagname} {...attrs}><Textout {dimtext} text={removeBracket(text)}/></span>
 {/if}

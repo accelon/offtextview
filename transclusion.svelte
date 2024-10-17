@@ -36,9 +36,9 @@ const getTransclusion=()=>{
         book=b;
         istranscludepage=true;
     } else {
-       [transclusiontext,lineinfo]=getSliceText(bk||ctx.book,pg,ptk);
+       [transclusiontext,lineinfo]=getSliceText(bk,pg,ptk);
         key=lineinfo.length?lineinfo[0].key:'';
-        istranscludepage=true;
+        if (transclusiontext) istranscludepage=true;
     }
 }
 $: getTransclusion(text);
@@ -47,9 +47,9 @@ const transcluding=ctx.transcluding;
 
 const openclose=()=>{
     const ptk=ctx.transclusiondict||ctx.ptk;
+    const m=link.match(/[asdm]n[\d\.]+/);
     if (!transclusiontext && !istranscludepage) {
     //try tipitaka
-        const m=caption.match(/[asdm]n[\d\.]+/);
         if (m) window.open('https://suttacentral.net/'+caption);
         else if (link.match(URL_REGEX))  window.open(link);
     } else {

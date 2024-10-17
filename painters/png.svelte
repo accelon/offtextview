@@ -7,9 +7,11 @@ export let tagname='';
 export let text='';
 export let addr='';
 export let active=false;
+export let id='';
 export let attrs={};
-$: attrs,text,tagname,addr,active;
+$: attrs,text,tagname,addr,active,id;
 $: book=parsePageBookLine(addr)[1];
-$: [alt,base64]=getSliceText(book+'-png',attrs.id+".png",ctx.ptk)[0].split('\n');
+$: [alt,base64]=getSliceText(book+'-png',id+".png",ctx.ptk)[0].split('\n');
+
 </script>
 <img style="filter:invert(1)" {alt} src={"data:image/png;base64,"+base64}/>

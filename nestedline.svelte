@@ -20,7 +20,8 @@ const ctx=getContext('ctx');
 let color,size;
 $: line,rendsent;
 $: units=breakRenderUnit(text);
-const transcluding=ctx.transcluding;
+
+const transcluding=ctx?.transcluding;
 $: dimtext=$transcluding && $transcluding!==parent;
 
 export const setstyle = (node, params)=>{
