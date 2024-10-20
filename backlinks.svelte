@@ -1,6 +1,7 @@
 <script>
 import {getContext} from 'svelte'
 export let links=[];
+export let parent='';
 export let depth=0;
 const ctx=getContext('ctx');
 import {painters} from './painters.js'
@@ -14,6 +15,6 @@ const gotopage=()=>{
 {#if parseInt(text).toString()==text}
 <span aria-hidden="true" class="clickable" on:click={()=>gotopage(text)}>{@html downstreamicon}{text}</span>
 {:else}
-<svelte:component this={painters.Transclusion} {text} depth={depth+1}/>
+<svelte:component this={painters.Transclusion} {text} depth={depth+1} {parent}/>
 {/if}{" "}
 {/each}

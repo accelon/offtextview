@@ -20,7 +20,6 @@ const ctx=getContext('ctx');
 let color,size;
 $: line,rendsent;
 $: units=breakRenderUnit(text);
-
 const transcluding=ctx?.transcluding;
 $: dimtext=$transcluding && $transcluding!==parent;
 
@@ -40,8 +39,8 @@ export const setstyle = (node, params)=>{
 {#if unit.type=='transclusion'}<Transclusion {active} {addr} {parent}
 text={unit.text} {depth}/>{:else if unit.type=='html'}{@html 
 unit.text}{:else if unit.offtag}<Offtag {dimtext}  text={unit.text} 
-offtag={unit.offtag} {addr} {active}/>{:else if unit.type=='offtext'}<Offtext 
-text={unit.text} {addr}/>{:else}<Textout {dimtext} 
+offtag={unit.offtag} {addr} {line} {active}/>{:else if unit.type=='offtext'}<Offtext 
+text={unit.text} {addr} {line}/>{:else}<Textout {dimtext} 
 text={unit.text.replace(/\^\^/g,'^').replace(/\n/g,"<br/>")} 
 tappable={true}/>{/if}{/each}{#if text?.length}<NestedLineInfo 
 {active} {addr} {lineinfo}/><Parallel {addr} {active}/>{/if}

@@ -81,5 +81,5 @@ in:fade out:fade>{#if transclusiontext}<svelte:component
   this={painters.TranscludePage} {addr} {book} {page} parent={link} 
   depth={depth+1} {line} {active}/>{/if}{#if links.length}{#if showback}<span aria-hidden="true" class="clickable"
     on:click={showBacklink}>⇚</span><Backlinks 
-    {links} {depth}/>{:else}<span 
+    {links} {depth} parent={link}/>{:else}<span 
     aria-hidden="true" class="clickable" on:click={showBacklink}>⇛</span>{/if}{/if}</span>{/if}

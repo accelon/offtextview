@@ -5,19 +5,25 @@ import {styledNumber} from 'ptk/utils/cnumber.ts'
 import NestedLine from '../nestedline.svelte';
 export let id=null;
 export let ln=null;
-export let ptk;
 export let caption='';
 export let highlighted=false;
 export let depth=0;
 export let line;
-$: text=ptk?.footNoteInTSV(id,line);
-$: caption,highlighted,depth,lang,id,ln;
+export let lang=0;
+export let tagname='';
+export let text='';
+export let addr='';
+export let active=false;
+export let ptk=null;
+export let attrs={};
+$: text=ptk?.footNoteInTSV&&ptk?.footNoteInTSV(id,line);
+$: caption,active,depth,lang,id,ln,tagname,addr,active,attrs;
 // $: console.log('i',linetext,id)
 export let showing=false;
 </script>
-{#if highlighted}
+{#if active}
 <span aria-hidden="true" on:click={()=>showing=!showing} 
     class:selected={showing} 
     class="clickable offtag_f">{showing?styledNumber(id):'◂'}</span>{/if}{#if showing}<span 
     style={"border-bottom:1px solid var(--depthcolor"+(depth+1)+"); border-right:3px solid var(--depthcolor"+(depth+1)+")"}
-><NestedLine depth={depth+1} {text} {line} {highlighted} /></span>{/if}
+><NestedLine depth={depth+1} {text} {line} {active} /></span>{/if}
