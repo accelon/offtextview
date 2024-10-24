@@ -9,8 +9,10 @@ export let lineinfo=[];
 export let depth=0;
 export let nolinebreak=false;
 export let activeline=0;
-export let parent=''
+export let parent='';
+export let lineoff=0;
 $: lines = text.split(/\r?\n/);
+
 const ctx=getContext('ctx');
 const getNestedStyle=(show)=>{
     return show?
@@ -30,7 +32,8 @@ $: renderpng=captionOf(ctx.ptk,addr).indexOf('.png')>0;
 {:else}
 <div class="nestedline" aria-hidden="true"
 on:click={()=>setActiveLine(idx)} style={getNestedStyle(lines.length>1&&activeline==idx&&active)}>
-<NestedLine active={activeline==idx&&active} {depth} {parent}
+
+<NestedLine active={activeline==idx&&active} {depth} {parent} line={lineoff+idx}
 addr={addr+(idx?'.'+idx:'')} {text} lineinfo={lineinfo[idx]}/>
 </div>
 {#if !nolinebreak&& lines.length>1}<br/>{/if}

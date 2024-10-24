@@ -6,7 +6,7 @@ import {moreicon} from './comps/svgicon.js'
 export let book='';
 export let addr=''
 export let page='';
-export let line=0;//從yid算起的偏移量
+export let pline=0;//從yid算起的偏移量
 export let active=false;
 export let depth=0;
 export let nolinebreak=false;
@@ -18,8 +18,8 @@ let from=0,to=0,numberpage=0;
 const loadtext=()=>{
     [pagetext,lineinfo,numberpage,lineoff]=getSliceText(book,page,ctx.ptk);
     linestext=pagetext.split('\n');
-    from=line;
-    to=line+1;
+    from=pline;
+    to=pline+1;
 }
 const slicetext=()=>{
     text=linestext.slice(from,to).join('\n')
@@ -33,10 +33,10 @@ const moredown=(all=false)=>{
     else if (to<linestext.length) to++;
 }
 const go=evt=>{
-    ctx.gopagebookline(numberpage||page,book,line+lineoff,true);
+    ctx.gopagebookline(numberpage||page,book,pline+lineoff,true);
     evt.stopPropagation();
 }
-$: loadtext(page,line,ctx.ptk);
+$: loadtext(page,pline,ctx.ptk);
 $: slicetext(from,to,linestext);
 $: addr;
 </script>

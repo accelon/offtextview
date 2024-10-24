@@ -7,6 +7,7 @@ import i from './painters/i.svelte'
 import p from './painters/p.svelte'
 import t from './painters/t.svelte'
 import l from './painters/l.svelte'
+import UIIcon from './painters/uiicon.svelte'
 import wiki from './painters/wiki.svelte'
 import baidu from './painters/baidu.svelte'
 import img from './painters/img.svelte'
@@ -27,6 +28,7 @@ export const painterInit=()=>{
     painters["y"]=Y;
     painters["z"]=Z;
     painters["png"]=PNG;
+    painters["uiicon"]=UIIcon;
     painters["audio"]=audio;
     painters["img"]=img;
     painters["wiki"]=wiki;

@@ -14,12 +14,12 @@ export let depth=0;
 export let addr='';
 export let attrs={};
 export let active=false;
-export let id='',ln='';
+export let id='',ln='',line=0;
 const ctx=getContext("ctx")
-let page, book, line;
+let page, book, pline;
 $: yid=tagname.replace(/^x/,'y')+attrs.id;
 let highlight,pbl
-$: id,ln;
+$: id,ln,line;
 const findPageLine=()=>{
     const [ppage,pbook,lineoff]=parsePageBookLine(addr);
     book=attrs.ln;
@@ -28,7 +28,7 @@ const findPageLine=()=>{
     }
     book=book||pbook;
     let tbook;
-    [page,tbook,line]=parsePageBookLine(yid);
+    [page,tbook,pline]=parsePageBookLine(yid);
     //use pbl to check 
     pbl=pageBookLineOfAnchor(yid+'@'+book,ctx.ptk);
     //highlight=ctx.fromAnchor==pbl;
@@ -46,4 +46,4 @@ $: findPageLine(yid);
 aria-hidden={true}>
 <Textout text={removeBracket(text)}/>{@html upstreamicon}</span><span class="quotetext"><svelte:component 
 this={painters.TranscludePage} {addr} nolinebreak={true} 
-{page} {line} {book} {active} {depth}/></span>
+{page} {pline} {book} {active} {depth}/></span>

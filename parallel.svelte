@@ -1,18 +1,17 @@
 <script>
 import {getContext} from 'svelte'
-//import {shownparallels} from './store.js'
 import {getSliceText} from 'ptk/basket/entries.ts'
 import {painters} from './painters.js'
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
-import { writable } from 'svelte/store';
 export let addr;
 export let depth=0;
 export let active=false;
-const shownparallels=writable([])
 const ctx=getContext("ctx");
+const shownparallels=ctx?.shownparallels;
 $: [page,book,line]=parsePageBookLine(addr);
 $: alignables=ctx?.ptk?.alignable(book)||[];
 const fetchPage=(page,book)=>{
+    debugger
     let [lines]=getSliceText(book,page,ctx?.ptk);
     return lines;
 }
