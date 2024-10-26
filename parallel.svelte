@@ -11,7 +11,6 @@ const shownparallels=ctx?.shownparallels;
 $: [page,book,line]=parsePageBookLine(addr);
 $: alignables=ctx?.ptk?.alignable(book)||[];
 const fetchPage=(page,book)=>{
-    debugger
     let [lines]=getSliceText(book,page,ctx?.ptk);
     return lines;
 }

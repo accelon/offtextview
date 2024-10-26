@@ -1,5 +1,6 @@
 <script>
 import {getContext} from 'svelte'
+import {get} from 'svelte/store'
 import Hzpxglyph from './hzpxglyph.svelte';
 export let text=''
 import {_} from './textout.js'
@@ -34,7 +35,8 @@ const setstyle = (node, params)=>{
 }
 
 const taptext=(e)=>{
-    if (tappable) {
+    const searchtofindidx=ctx.searchtofindidx;
+    if (tappable && (!searchtofindidx || !get(searchtofindidx))) {
         const [sentence,pos,len]=sentencePosfromSelection(e.target.attributes.oritext.value);
         ctx.taptext&&ctx.taptext(sentence,pos,len);
     }
