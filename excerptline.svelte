@@ -6,11 +6,10 @@ export let text='';
 export let hits=[];
 export let phraselength=[];
 export let phrasehits=[]
-if (phrasehits) {
+$: if (phrasehits) {
     hits =phrasehits.map(n=>Math.floor(n/MAXPHRASELEN));
     phraselength =phrasehits.map(n=>n%MAXPHRASELEN);
 }
-
 </script>
 
 <Abridge {phraselength} {text} {hits} let:tk>

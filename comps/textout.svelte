@@ -22,7 +22,6 @@ const breakSnippets=t=>{
     return out;
 }
 $: snippets=breakSnippets(text);
-
 const setstyle = (node, params)=>{
     let style=getComputedStyle(node);
     color=style.getPropertyValue('color');
