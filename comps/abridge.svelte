@@ -6,7 +6,7 @@ if (!hits.length) hits=[0];//display begining snippet
 export let phraselength=[5];//make sure first token is highlighted
 export let text='';
 $: [runits]=renderOfftext(text,{hits,phraselength});
-$: abridges=abridgeRenderUnits(runits,20,refreshcount);
+$: abridges=abridgeRenderUnits(runits,10,refreshcount);
 let refreshcount=1;
 const expand=(idx,direction=0)=>{
 	const R=runits;
