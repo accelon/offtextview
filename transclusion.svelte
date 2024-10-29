@@ -26,7 +26,6 @@ const getTransclusion=()=>{
     const ptk=ctx.transclusiondict||ctx.ptk;
     let tag='';
     [tag,link,caption]=parseTransclusion(text);
-
     const [pg,bk]=parsePageBookLine(link);
     if (pg.startsWith('x')) {
         const pbl=pageBookLineOfAnchor(text,ptk);

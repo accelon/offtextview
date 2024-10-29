@@ -17,7 +17,7 @@ export let active=false;
 export let ptk=null;
 export let attrs={};
 $: text=ptk?.footNoteInTSV&&ptk?.footNoteInTSV(id,line);
-$: caption,active,depth,lang,id,ln,tagname,addr,active,attrs;
+$: caption,active,depth,lang,id,ln,tagname,addr,active,attrs,highlighted;
 // $: console.log('i',linetext,id)
 export let showing=false;
 </script>

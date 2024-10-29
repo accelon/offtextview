@@ -19,7 +19,7 @@ const ctx=getContext("ctx")
 let page, book, pline;
 $: yid=tagname.replace(/^x/,'y')+attrs.id;
 let highlight,pbl
-$: id,ln,line;
+$: id,ln,line,offtag;
 const findPageLine=()=>{
     const [ppage,pbook,lineoff]=parsePageBookLine(addr);
     book=attrs.ln;

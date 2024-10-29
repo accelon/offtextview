@@ -11,7 +11,7 @@ export let ln='';
 export let id;
 export let caption;
 export let highlighted=false;
-$: ptk,line,highlighted;
+$: ptk,line,highlighted,id,depth;
 const ctx=getContext('ctx')
 const jump=()=>{
     const addr=parseAddress(ctx.address);

@@ -10,6 +10,7 @@ const ctx=getContext("ctx");
 const shownparallels=ctx?.shownparallels;
 $: [page,book,line]=parsePageBookLine(addr);
 $: alignables=ctx?.ptk?.alignable(book)||[];
+$: depth;
 const fetchPage=(page,book)=>{
     let [lines]=getSliceText(book,page,ctx?.ptk);
     return lines;

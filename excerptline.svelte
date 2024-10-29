@@ -10,7 +10,7 @@ $: if (phrasehits) {
     hits =phrasehits.map(n=>Math.floor(n/MAXPHRASELEN));
     phraselength =phrasehits.map(n=>n%MAXPHRASELEN);
 }
-</script>
+</script> 
 
 <Abridge {phraselength} {text} {hits} let:tk>
 {#if tk.highlight}<span class="hl0">{_(tk.text)}</span>{:else}{_(tk.text)}{/if}

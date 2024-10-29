@@ -11,4 +11,4 @@ export let attrs={};
 $: attrs,text,tagname,addr,active,id,id,line;
 
 </script>
-{@html svgs[id]}
+{@html (svgs[id]||svgs[id+"icon"])}

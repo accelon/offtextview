@@ -8,7 +8,7 @@ export let attrs={};
 import Textout from '../comps/textout.svelte'
 
 $: depth=tagname.charCodeAt(1)-0x61
-$: attrs;
+$: attrs,active,addr;
 
 </script>
 <span class={"offtag_"+tagname}

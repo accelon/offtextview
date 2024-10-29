@@ -34,6 +34,7 @@ const setstyle = (node, params)=>{
 }
 
 const taptext=(e)=>{
+    if (!ctx)return;
     const searchtofindidx=ctx.searchtofindidx;
     if (tappable && (!searchtofindidx || !get(searchtofindidx))) {
         const [sentence,pos,len]=sentencePosfromSelection(e.target.attributes.oritext.value);
