@@ -6,6 +6,7 @@ export let text='';
 export let hits=[];
 export let phraselength=[];
 export let phrasehits=[]
+export let sim=0;
 $: if (phrasehits) {
     hits =phrasehits.map(n=>Math.floor(n/MAXPHRASELEN));
     phraselength =phrasehits.map(n=>n%MAXPHRASELEN);
@@ -13,6 +14,6 @@ $: if (phrasehits) {
 </script> 
 
 <Abridge {phraselength} {text} {hits} let:tk>
-{#if tk.highlight}<span class="hl0">{_(tk.text)}</span>{:else}{_(tk.text)}{/if}
+{#if tk.highlight}<span class="hl0">{_(tk.text,sim)}</span>{:else}{_(tk.text,sim)}{/if}
 </Abridge>
 
