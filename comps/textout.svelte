@@ -3,11 +3,12 @@ import {getContext} from 'svelte'
 import {get} from 'svelte/store'
 import Hzpxglyph from './hzpxglyph.svelte';
 export let text=''
+export let addr='';
+export let line=0;//line in ptk, optional
 import {_} from './textout.js'
 import {sentencePosfromSelection,REGEX_IRE} from 'ptk/utils/cjk.ts'
 export let tappable=false;
 export let dimtext=false;
-
 let color,size;
 const ctx=getContext('ctx');
 const breakSnippets=t=>{
@@ -38,11 +39,11 @@ const taptext=(e)=>{
     const searchtofindidx=ctx.searchtofindidx;
     if (tappable && (!searchtofindidx || !get(searchtofindidx))) {
         const [sentence,pos,len]=sentencePosfromSelection(e.target.attributes.oritext.value);
-        ctx.taptext&&ctx.taptext(sentence,pos,len);
+        ctx.taptext&&ctx.taptext(sentence,pos,len,addr);
     }
 }
 </script>
 <span class="bodytext" class:dimtext use:setstyle>{#each snippets as [text,type] }{#if type=='hzpx'}
 <span style="font-size:0px"><Hzpxglyph {color} {size} ire={text}
-/></span>{:else}<span on:click={taptext} aria-hidden={true} oritext={text}
+/></span>{:else}<span on:click={taptext} aria-hidden={true} oritext={text} {line}
 >{@html _(text,ctx?.sim)}</span>{/if}{/each}</span>

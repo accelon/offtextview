@@ -24,6 +24,7 @@ const setActiveLine=l=>{
 }
 $: renderpng=captionOf(ctx.ptk,addr).indexOf('.png')>0;
 //$:console.log(renderpng,captionOf(ctx.ptk,addr).indexOf('.png'))
+
 </script>
 
 {#each lines as text,idx}
@@ -32,7 +33,6 @@ $: renderpng=captionOf(ctx.ptk,addr).indexOf('.png')>0;
 {:else}
 <div class="nestedline" aria-hidden="true"
 on:click={()=>setActiveLine(idx)} style={getNestedStyle(lines.length>1&&activeline==idx&&active)}>
-
 <NestedLine active={activeline==idx&&active} {depth} {parent} line={lineoff+idx}
 addr={addr+(idx?'.'+idx:'')} {text} lineinfo={lineinfo[idx]}/>
 </div>

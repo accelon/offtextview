@@ -7,7 +7,7 @@ import Offtag from './comps/offtag.svelte';
 import Textout from './comps/textout.svelte'
 import Parallel from './parallel.svelte';
 import {getContext} from 'svelte'
-
+import ActiveText from './activetext.svelte'
 export let addr='';
 export let text='';
 export let depth=0;
@@ -39,7 +39,7 @@ export const setstyle = (node, params)=>{
 text={unit.text} {depth}/>{:else if unit.type=='html'}{@html 
 unit.text}{:else if unit.offtag}<Offtag {dimtext}  text={unit.text} 
 offtag={unit.offtag} {addr} {line} {active}/>{:else if unit.type=='offtext'}<Offtext 
-text={unit.text} {addr} {line}/>{:else}<Textout {dimtext} 
+text={unit.text} {addr} {line}/>{:else}<Textout {dimtext} {addr}
 text={unit.text.replace(/\^\^/g,'^').replace(/\n/g,"<br/>")} 
-tappable={true}/>{/if}{/each}{#if text?.length}<NestedLineInfo 
-{active} {addr} {lineinfo}/><Parallel {addr} {active}/>{/if}
+tappable={true} {line}/>{/if}{/each}{#if text?.length}<NestedLineInfo 
+{active} {addr} {lineinfo}/><Parallel {addr} {active} />{#if active}<ActiveText {depth} {parent}/>{/if}{/if}
