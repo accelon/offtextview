@@ -8,10 +8,11 @@ export let depth=0;
 const ctx=getContext('ctx');
 const activetext=ctx.activetext;
 let text='';
-$: [word,addr]=$activetext;
+$: [word,addr]=$activetext||[];
 $: [p,b,l]=parsePageBookLine(addr||'')
 $: [text]=word?getSliceText(b+'-dict',word.toLowerCase(),ctx.ptk):[''];
 </script>
 {#if depth==0 && text}
-{word||''}:<svelte:component this={painters.NestedLine} {text} depth={depth+1} active={true} {parent} />
+{word||''}:<svelte:component this={painters.NestedText} 
+{text} depth={depth+2} {parent} />
 {/if}

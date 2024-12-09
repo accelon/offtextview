@@ -19,4 +19,3 @@ const loadsvg=async(ire)=>{
 $: loadsvg(ire);
 </script>
 {@html svg}
-{ire}
