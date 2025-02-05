@@ -10,7 +10,7 @@ const ctx=getContext("ctx");
 const shownparallels=ctx?.shownparallels;
 $: [page,book,line]=parsePageBookLine(addr);
 $: alignables=ctx?.ptk?.alignable(book)||[];
-$: depth;
+
 const fetchPage=(page,book)=>{
     let [lines]=getSliceText(book,page,ctx?.ptk);
     return lines;
@@ -42,7 +42,7 @@ const getAlignCaption=book=>{
     class:chosenbutton={~$shownparallels.indexOf(alignable)}
     class="clickable">{getAlignCaption(alignable)}</span>&nbsp;
 {#if ~$shownparallels.indexOf(alignable)}
-<svelte:component this={painters.NestedLine} {...getParallelLine(alignable,addr)} />
+<svelte:component this={painters.NestedLine} {...getParallelLine(alignable,addr)} {depth}/>
 {/if}
 {/each}
 {/if}
