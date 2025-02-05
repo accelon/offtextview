@@ -18,6 +18,7 @@ import {painters} from './painters.js'
 import X from './painters/x.svelte'
 import Y from './painters/y.svelte'
 import Z from './painters/z.svelte'
+import Q from './painters/q.svelte'
 import PNG from './painters/png.svelte'
 export const painterInit=()=>{
     painters["NestedLine"]=NestedLine;
@@ -27,6 +28,7 @@ export const painterInit=()=>{
     painters["x"]=X;
     painters["y"]=Y;
     painters["z"]=Z;
+    painters["q"]=Q;
     painters["png"]=PNG;
     painters["uiicon"]=UIIcon;
     painters["audio"]=audio;
