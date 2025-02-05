@@ -8,7 +8,7 @@ export let depth=0;
 const ctx=getContext('ctx');
 const activetext=ctx.activetext;
 let text='';
-$: [word,addr]=$activetext;
+$: [word,addr]=$activetext||[];
 $: [p,b,l]=parsePageBookLine(addr||'')
 $: [text]=word?getSliceText(b+'-dict',word.toLowerCase(),ctx.ptk):[''];
 </script>

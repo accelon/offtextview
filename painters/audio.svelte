@@ -6,8 +6,8 @@ import {downloadicon} from '../comps/svgicon.js'
 import { getContext } from 'svelte';
 export let url='';
 export let filesize=0;
-export let tagname,attrs,addr,active,text='',title;
-$: length,tagname,attrs,addr,active,text,title;
+export let tagname,attrs,addr,active,text='',title,line;
+$: length,tagname,attrs,addr,active,text,title,line;
 //TODO only show control when highlighted
 
 const ctx=getContext('ctx');
