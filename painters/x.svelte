@@ -33,16 +33,16 @@ const findPageLine=()=>{
     pbl=pageBookLineOfAnchor(yid+'@'+book,ctx.ptk);
     //highlight=ctx.fromAnchor==pbl;
 }
-const go=evt=>{
+const goUpstream=evt=>{
     //fromAnchor.set(addr);
     const [p,b,l]=parsePageBookLine(pbl)
     ctx.gopagebookline(p,b,l);
     evt.stopPropagation();
 }
-$: findPageLine(yid);
 
+$: findPageLine(yid);
 </script>
-<span class="clickable quotetitle" class:highlight on:click={go}
+<span class="clickable quotetitle" class:highlight on:click={goUpstream}
 aria-hidden={true}>
 <Textout text={removeBracket(text)}/>{@html upstreamicon}</span><span class="quotetext"><svelte:component 
 this={painters.TranscludePage} {addr} nolinebreak={true} 

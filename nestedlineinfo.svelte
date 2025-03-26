@@ -4,7 +4,7 @@ import NestlineLink from './nestedlinelink.svelte'
 export let lineinfo;
 export let addr;
 export let active=false;
-$: locallinks=lineinfo?.locallinks||[];
+$: locallinks=lineinfo?.locallinks||[] ;
 </script>
 {#if active}
 {#each locallinks as absline}

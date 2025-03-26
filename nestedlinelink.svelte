@@ -7,8 +7,8 @@ import { parsePageBookLine } from 'ptk/offtext/parser.ts';
 const ctx=getContext('ctx');
 export let absline=0;
 export let addr=''
-let book,page,lineoff,text='';
-$: addr;
+let book,page,lineoff,text;
+$: addr
 const transclusiontext=()=>{
     const DK=ctx.ptk.defines.dk;
     book=ctx.ptk.nearestTag(absline+1,'bk','id');
@@ -27,7 +27,7 @@ const goreftext=evt=>{
     ctx.gopagebookline(page,book,lineoff,true);
     evt.stopPropagation();
 }
-transclusiontext();
+$: transclusiontext(addr);
 const highlight=isActive();
 </script>
 <span aria-hidden={true} on:click={goreftext}

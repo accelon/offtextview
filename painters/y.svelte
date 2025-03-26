@@ -10,7 +10,7 @@ export let active=false;
 export let id='',ln='',line=0;
 import Textout from '../comps/textout.svelte'
 $: depth=(attrs.id||id)?parsePolyToc(attrs.id).length:0;
-$: console.log(attrs.id||id,depth)
+//$: console.log(attrs.id||id,depth)
 $: attrs,addr,ptk,active,id,ln,line;
 </script>
 <span class={"offtag_"+tagname}

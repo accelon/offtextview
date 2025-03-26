@@ -33,9 +33,10 @@ export const setstyle = (node, params)=>{
         size=style.getPropertyValue('font-size');
     }
 }
+
 </script>
 {#each units as unit}
-{#if unit.type=='transclusion'}<Transclusion {active} {addr} {parent}
+{#if unit.type=='transclusion'}<Transclusion {active} {addr} {parent} offtag={unit.offtag}
 text={unit.text} {depth}/>{:else if unit.type=='html'}{@html 
 unit.text}{:else if unit.offtag}<Offtag {dimtext}  text={unit.text} 
 offtag={unit.offtag} {addr} {line} {active}/>{:else if unit.type=='offtext'}<Offtext 
