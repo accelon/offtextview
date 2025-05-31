@@ -5,15 +5,16 @@ import {painters} from './painters.js'
 import { parsePageBookLine } from 'ptk/offtext/parser.ts';
 export let addr;
 export let depth=0;
+export let line=0;
 export let active=false;
 const ctx=getContext("ctx");
 const shownparallels=ctx?.shownparallels;
-$: [page,book,line]=parsePageBookLine(addr);
+$: [page,book,localline]=parsePageBookLine(addr);
 $: alignables=ctx?.ptk?.alignable(book)||[];
 
 const fetchPage=(page,book)=>{
-    let [lines]=getSliceText(book,page,ctx?.ptk);
-    return lines;
+    let [lines,lineinfo,npage,nline]=getSliceText(book,page,ctx?.ptk);
+    return [lines,nline];
 }
 const toggleparallel=(book)=>{
     const arr=$shownparallels;
@@ -23,9 +24,10 @@ const toggleparallel=(book)=>{
     shownparallels.set(arr);
 }
 const getParallelLine=(parallelbook)=>{
-    const lines=fetchPage(page,parallelbook).split(/\n/);
-    const text=lines[line]
-    return {text, line , addr:page+'@'+parallelbook+'.'+line};
+    const [texts,nline]=fetchPage(page,parallelbook);
+    const lines=texts.split(/\n/);
+    const text=lines[localline]
+    return {text, line:line+nline , addr:page+'@'+parallelbook+'.'+localline};
 }
 const getAlignCaption=book=>{
     const tagattrs=ctx?.ptk.getTagById("bk",book);

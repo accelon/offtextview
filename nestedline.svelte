@@ -43,4 +43,4 @@ offtag={unit.offtag} {addr} {line} {active}/>{:else if unit.type=='offtext'}<Off
 text={unit.text} {addr} {line}/>{:else}<Textout {dimtext} {addr}
 text={unit.text.replace(/\^\^/g,'^').replace(/\n/g,"<br/>")} 
 tappable={true} {line}/>{/if}{/each}{#if text?.length}<NestedLineInfo 
-{active} {addr} {lineinfo}/><Parallel depth={depth+1} {addr} {active} />{#if active}<ActiveText {depth} {parent}/>{/if}{/if}
+{active} {addr} {lineinfo}/><Parallel depth={depth+1} {addr} {active} {line} />{#if active}<ActiveText {depth} {parent}/>{/if}{/if}

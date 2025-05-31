@@ -1,5 +1,6 @@
 <script>
     /* ms-word style footnote , link with id*/
+import {getContext} from 'svelte';
 import {styledNumber} from 'ptk/utils/cnumber.ts'
 //import OfftextPaint from '../offtextpaint.svelte';
 import NestedLine from '../nestedline.svelte';
@@ -16,8 +17,12 @@ export let addr='';
 export let active=false;
 export let ptk=null;
 export let attrs={};
-$: text=ptk?.footNoteInTSV&&ptk?.footNoteInTSV(id,line);
+
+const ctx=getContext('ctx');
+if (!ptk) ptk=ctx.ptk;
+$: text=ptk?.footNoteInTSV&&ptk?.footNoteInTSV(id,line)||"COULD NOT FIND FOOTNOTE "+(id);
 $: caption,active,depth,lang,id,ln,tagname,addr,active,attrs,highlighted;
+
 // $: console.log('i',linetext,id)
 export let showing=false;
 </script>
