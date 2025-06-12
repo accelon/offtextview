@@ -1,4 +1,4 @@
-import {toSim} from 'lossless-simplified-chinese';
+import {toSim} from 'ptk/lossless-simplified-chinese';
 export const _=(t,sim=0)=>{
 	t=t;
     return sim?toSim(t,sim):t;

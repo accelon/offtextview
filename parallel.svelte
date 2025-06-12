@@ -26,7 +26,8 @@ const toggleparallel=(book)=>{
 const getParallelLine=(parallelbook)=>{
     const [texts,nline]=fetchPage(page,parallelbook);
     const lines=texts.split(/\n/);
-    const text=lines[localline]
+    const text=lines[localline];
+    // ctx?.ptk?.rangeOfAddress(npage)
     return {text, line:line+nline , addr:page+'@'+parallelbook+'.'+localline};
 }
 const getAlignCaption=book=>{
